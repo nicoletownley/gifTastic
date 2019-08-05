@@ -30,16 +30,20 @@
 <button data-search="Julianne Moore"> Julianne Moore</button>
 <button data-search="Amy Adams">Amy Adams</button>
 <button data-search="Cate Blanchett">Cate Blanchett</button>
-
+<div id="GIFArea"></div>
 <script type="text/javascript">
 
 $('button').on("click",function (){
 var x = $(this).data("search")
 
-var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +x+"api_key=jk92ejWIxe2OrTclMoR8D5thfcuJyakh&limit=10";
+var queryURL = "http://api.giphy.com/v1/gifs/search?q="+x+"&api_key=jk92ejWlxe2OrTcIMoR8D5thfcuJyakh&limit=10";
 $.ajax({url:queryURL,method:'GET'})
 .done(function(response){
-    console.log(response.data[0].rating);
+    console.log(response);
+    for(var i=0; i<response.data.length; i++){
+    $("#GIFArea").prepend("<p>Rating: "+response.data[i].rating+"</p>");   
+    $("#GIFArea").prepend("<img src='"+response.data[i].images.downsized.url+"'>");
+}
 })
 })
 
