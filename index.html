@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Best Actors</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+<button data-search="Morgan Freeman">Morgan Freeman</button>
+<button data-search="Leonardo DiCaprio"> Leonardo DiCaprio</button>
+<button data-search="Brad Pitt"> Brad Pitt</button>
+<button data-search="Michael Caine">Michael Caine</button>
+<button data-search="Robert De Niro">Robert De Niro</button>
+<button data-search="Matt Damon">Matt Damon</button>    
+<button data-search="Tom Hanks">Tom Hanks</button>
+<button data-search="Christian Bale">Christian Bale</button>
+<button data-search="Gary Oldman">Gary Oldman</button>
+<button data-search="Al Pacino">Al Pacino</button>  
+<button data-search="Natalie Portman">Natalie Portman</button>
+<Button data-search="Anne Hathaway">Anne Hathaway</Button>
+<button data-search="Talia Shire">Talia Shire</button>
+<button data-search="Diane Keaton">Diane Keaton</button>
+<button data-search="Keira Knightley">Keira Knightley</button>
+<button data-search="Uma Thurman">Uma Thurman</button>
+<button data-search="Jennifer Lawrence">Jennifer Lawrence</button>
+<button data-search="Julianne Moore"> Julianne Moore</button>
+<button data-search="Amy Adams">Amy Adams</button>
+<button data-search="Cate Blanchett">Cate Blanchett</button>
+
+<script type="text/javascript">
+
+$('button').on("click",function (){
+var x = $(this).data("search")
+
+var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +x+"api_key=jk92ejWIxe2OrTclMoR8D5thfcuJyakh&limit=10";
+$.ajax({url:queryURL,method:'GET'})
+.done(function(response){
+    console.log(response.data[0].rating);
+})
+})
+
+</script>
+
+</body>
+
+</html>
