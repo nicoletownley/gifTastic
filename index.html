@@ -2,52 +2,93 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>Best Actors</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <title>Best Actors</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 </head>
 
 <body>
-<button data-search="Morgan Freeman">Morgan Freeman</button>
-<button data-search="Leonardo DiCaprio"> Leonardo DiCaprio</button>
-<button data-search="Brad Pitt"> Brad Pitt</button>
-<button data-search="Michael Caine">Michael Caine</button>
-<button data-search="Robert De Niro">Robert De Niro</button>
-<button data-search="Matt Damon">Matt Damon</button>    
-<button data-search="Tom Hanks">Tom Hanks</button>
-<button data-search="Christian Bale">Christian Bale</button>
-<button data-search="Gary Oldman">Gary Oldman</button>
-<button data-search="Al Pacino">Al Pacino</button>  
-<button data-search="Natalie Portman">Natalie Portman</button>
-<Button data-search="Anne Hathaway">Anne Hathaway</Button>
-<button data-search="Talia Shire">Talia Shire</button>
-<button data-search="Diane Keaton">Diane Keaton</button>
-<button data-search="Keira Knightley">Keira Knightley</button>
-<button data-search="Uma Thurman">Uma Thurman</button>
-<button data-search="Jennifer Lawrence">Jennifer Lawrence</button>
-<button data-search="Julianne Moore"> Julianne Moore</button>
-<button data-search="Amy Adams">Amy Adams</button>
-<button data-search="Cate Blanchett">Cate Blanchett</button>
-<div id="GIFArea"></div>
-<script type="text/javascript">
+    <button data-search="Morgan Freeman">Morgan Freeman</button>
+    <button data-search="Leonardo DiCaprio"> Leonardo DiCaprio</button>
+    <button data-search="Brad Pitt"> Brad Pitt</button>
+    <button data-search="Michael Caine">Michael Caine</button>
+    <button data-search="Robert De Niro">Robert De Niro</button>
+    <button data-search="Matt Damon">Matt Damon</button>
+    <button data-search="Tom Hanks">Tom Hanks</button>
+    <button data-search="Christian Bale">Christian Bale</button>
+    <button data-search="Gary Oldman">Gary Oldman</button>
+    <button data-search="Al Pacino">Al Pacino</button>
+    <button data-search="Natalie Portman">Natalie Portman</button>
+    <Button data-search="Anne Hathaway">Anne Hathaway</Button>
+    <button data-search="Talia Shire">Talia Shire</button>
+    <button data-search="Diane Keaton">Diane Keaton</button>
+    <button data-search="Keira Knightley">Keira Knightley</button>
+    <button data-search="Uma Thurman">Uma Thurman</button>
+    <button data-search="Jennifer Lawrence">Jennifer Lawrence</button>
+    <button data-search="Julianne Moore"> Julianne Moore</button>
+    <button data-search="Amy Adams">Amy Adams</button>
+    <button data-search="Cate Blanchett">Cate Blanchett</button>
 
-$('button').on("click",function (){
-var x = $(this).data("search")
+    <div id="GIFArea"></div>
+    <script type="text/javascript">
 
-var queryURL = "http://api.giphy.com/v1/gifs/search?q="+x+"&api_key=jk92ejWlxe2OrTcIMoR8D5thfcuJyakh&limit=10";
-$.ajax({url:queryURL,method:'GET'})
-.done(function(response){
-    console.log(response);
-    for(var i=0; i<response.data.length; i++){
-    $("#GIFArea").prepend("<p>Rating: "+response.data[i].rating+"</p>");   
-    $("#GIFArea").prepend("<img src='"+response.data[i].images.downsized.url+"'>");
-}
-})
-})
+        $('button').on("click", function () {
+            var x = $(this).data("search")
 
-</script>
+            var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + x + "&api_key=jk92ejWlxe2OrTcIMoR8D5thfcuJyakh&limit=10";
+            $.ajax({ url: queryURL, method: 'GET' })
+                .done(function (response) {
+                    console.log(response);
+                    for (var i = 0; i < response.data.length; i++) {
+                        $("#entertainer-view").prepend("<p>Rating: " + response.data[i].rating + "</p>");
+                        $("#entertainer-view").prepend("<img src='" + response.data[i].images.fixed_height.url + "'>");
+                    }
+                })
+        })
+    </script>
+
+    </div>
+    <div class="container">
+
+
+
+        <form id="entertainer-form">
+            <h2>Entertainer Search</h2>
+            <label for="entertainer-input">Search for an entertainer:</label>
+            <input type="text" id="entertainer-input"><br>
+
+
+            <input id="find-entertainer" type="submit" value="Entertainer Search">
+        </form>
+
+
+        <div id="entertainer-view"></div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript">
+
+            $("#find-entertainer").on("click", function (event) {
+                event.preventDefault();
+                var entertainer = $("#entertainer-input").val();
+                var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + entertainer + "&api_key=jk92ejWlxe2OrTcIMoR8D5thfcuJyakh&limit=10"
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                }).then(function (response) {
+                    for (var i = 0; 0 < entertainer.length; i++) {
+                        //var newdiv = $("<div>")
+                        console.log(response.data);
+                        $("#entertainer-view").prepend("<p>Rating: " + response.data[i].rating + "</p>");
+                        $("#entertainer-view").prepend("<img src='" + response.data[i].images.fixed_height.url + "'>");
+                    }
+                })
+            })
+
+        </script>
 
 </body>
 
