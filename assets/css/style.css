@@ -1,7 +1,9 @@
 body {
-    background-image: url("assets/images/movie.jpg");
+    background-image: url("../images/movie.jpg");
     background-size: cover;
+    color: white;
 }
 #entertainer-form {
     float:right;
+    color:  white;
 }
