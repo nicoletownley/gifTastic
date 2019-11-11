@@ -78,7 +78,7 @@
             $("#find-entertainer").on("click", function (event) {
                 event.preventDefault();
                 var entertainer = $("#entertainer-input").val();
-                var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + entertainer + "&api_key=jk92ejWlxe2OrTcIMoR8D5thfcuJyakh&limit=10"
+                var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + entertainer + "&api_key=jk92ejWlxe2OrTcIMoR8D5thfcuJyakh&limit=1"
                 $.ajax({
                     url: queryURL,
                     method: "GET"
